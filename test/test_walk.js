@@ -13,13 +13,13 @@ test.run("walk test", function () {
 	ok("back", w.back(), 'c');
 	ok("back", w.back(), 'b');
 	ok("back", w.back(), 'a');
-	ok("to", w.to('g'), 6);
+	ok("to", w.to('g'), 'g');
 	ok("ch", w.ch, 'g');
 	ok("each", w.each(function(c){return c + '#';}), "g#h#i#j#k#l#m#n#");
 
 	w = new Walk("a    foo");
 	w.next();
-	w.white();
+	ok("white", w.white(), 'f');
 	ok("ignore white space", w.ch, 'f');
 
 	var ret = Walk.each("hijklmn", function (c) {
