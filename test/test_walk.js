@@ -17,14 +17,13 @@ test.run("walk test", function () {
 	ok("ch", w.ch, 'g');
 	ok("each", w.each(function(c){return c + '#';}), "g#h#i#j#k#l#m#n#");
 
+	w = new Walk("a    foo");
+	w.next();
+	w.white();
+	ok("ignore white space", w.ch, 'f');
+
 	var ret = Walk.each("hijklmn", function (c) {
 		return c + '0';
 	});
 	ok("Walk.each", ret, "h0i0j0k0l0m0n0");
-
-	try {
-		w.error("throw error");
-	} catch (ex) {
-		is("exeption", ex, {message:"throw error", src:"abcdefghijklmn", ch:'', at:14});
-	}
 });
